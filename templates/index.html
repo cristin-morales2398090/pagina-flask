@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Sucursal Tecnológica</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center" href="#">
+
+            <img src="{{ url_for('static', filename='img/logo.png') }}"
+            class="logo">
+
+            <span class="ms-3">
+                La Sucursal Tecnológica
+            </span>
+
+        </a>
+
+        <button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+        id="menu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inicio</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#categorias">
+                        Categorías
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#productos">
+                        Productos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#servicios">
+                        Servicios
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">
+                        Contacto
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <h1>
+                    CONECTANDO TU FUTURO
+                </h1>
+
+                <p>
+
+                    Venta de computadores, impresoras,
+                    redes empresariales, CCTV,
+                    accesorios tecnológicos y soporte profesional.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="#productos"
+                    class="btn btn-primary btn-lg me-3">
+
+                        Servicios
+
+                    </a>
+
+                    <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20los%20productos%20y%20servicios%20de%20La%20Sucursal%20Tecnológica"
+class="btn btn-outline-primary btn-lg"
+target="_blank">
+
+    Contactar
+
+</a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <img src="{{ url_for('static', filename='img/logo.png') }}"
+                class="hero-logo">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CATEGORIAS -->
+
+<section id="categorias" class="container py-5">
+
+    <div class="titulo-seccion">
+
+        <span>EXPLORA</span>
+
+        <h2>Nuestras Líneas Tecnológicas</h2>
+
+        <p>
+            Encuentra equipos, accesorios y soluciones tecnológicas
+            para hogares, empresas y entidades públicas.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- PORTATILES -->
+
+       <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/portatiles" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/portatiles.jpg') }}"
+                alt="Portátiles">
+
+            </div>
+
+            <h4>Portátiles</h4>
+
+            <p>
+                HP, Lenovo, ASUS, Dell y más.
+            </p>
+
+            <span>Ver catálogo →</span>
+
+        </div>
+
+    </a>
+
+</div>
+
+        <!-- IMPRESORAS -->
+
+       <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/impresoras" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/impresoras.jpg') }}"
+                alt="Impresoras">
+
+            </div>
+
+            <h4>Impresoras</h4>
+
+            <p>
+                Epson, HP, Brother y Canon.
+            </p>
+
+            <span>Ver catálogo →</span>
+
+        </div>
+
+    </a>
+
+</div>
+
+        <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/redes" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/redes.jpg') }}"
+                alt="Redes">
+
+            </div>
+
+            <h4>Redes</h4>
+
+            <p>
+                Routers, switches y cableado estructurado.
+            </p>
+
+            <span>Ver catálogo →</span>
+
+        </div>
+
+    </a>
+
+</div>
+
+        <!-- ACCESORIOS -->
+
+        <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/accesorios" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/accesorios.jpg') }}"
+                alt="Accesorios">
+
+            </div>
+
+            <h4>Accesorios</h4>
+
+            <p>
+                Mouse, teclados, audífonos y periféricos.
+            </p>
+
+            <span>
+                Ver catálogo →
+            </span>
+
+        </div>
+
+    </a>
+
+</div>
+
+        <!-- COMPUTADORES -->
+
+        <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/computadores" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/computadores.jpg') }}"
+                alt="Computadores">
+
+            </div>
+
+            <h4>Computadores</h4>
+
+            <p>
+                Equipos empresariales y estaciones de trabajo.
+            </p>
+
+            <span>
+                Ver catálogo →
+            </span>
+
+        </div>
+
+    </a>
+
+</div>
+
+        <!-- SEGURIDAD -->
+
+        <div class="col-lg-4 col-md-6">
+
+    <a href="/categoria/seguridad" class="categoria-link">
+
+        <div class="categoria-card">
+
+            <div class="categoria-imagen">
+
+                <img src="{{ url_for('static', filename='img/categorias/seguridad.jpg') }}"
+                alt="Seguridad">
+
+            </div>
+
+            <h4>Seguridad</h4>
+
+            <p>
+                Cámaras CCTV, DVR y sistemas de vigilancia.
+            </p>
+
+            <span>
+                Ver catálogo →
+            </span>
+
+        </div>
+
+    </a>
+
+</div>
+</section>
+<!-- PRODUCTOS -->
+
+<section id="productos" class="container py-5">
+
+    <div class="titulo-seccion">
+
+    <span>DESTACADOS</span>
+
+    <h2>Productos Más Vendidos</h2>
+
+    <p>
+        Los equipos tecnológicos más solicitados por nuestros clientes.
+    </p>
+
+</div>
+
+    <div class="row">
+
+        {% for producto in productos %}
+
+        <div class="col-lg-4 col-md-6 mb-5">
+
+            <div class="producto-premium">
+
+                <div class="badge-producto">
+                    Nuevo
+                </div>
+
+                <div class="imagen-producto">
+
+                    <img src="{{ url_for('static', filename=producto.imagen) }}">
+
+                </div>
+
+                <div class="contenido-producto">
+
+                    <span class="categoria">
+                        Tecnología
+                    </span>
+
+                    <h3>
+                        {{ producto.nombre }}
+                    </h3>
+
+                    <p>
+                        {{ producto.descripcion }}
+                    </p>
+
+                    <div class="precio-box">
+
+                        <span class="precio-antiguo">
+                            $3.000.000
+                        </span>
+
+                        <span class="precio">
+                            {{ producto.precio }}
+                        </span>
+
+                    </div>
+
+                    <div class="acciones">
+
+                        <button class="btn-comprar">
+                            Cotizar
+                        </button>
+
+                        <button class="btn-favorito">
+
+                            <i class="fas fa-heart"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- SERVICIOS -->
+
+<section id="servicios"
+class="servicios">
+
+    <div class="container">
+
+        <h2 class="text-center text-white">
+            Nuestros Servicios
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <h1>
+                    <i class="fas fa-tools"></i>
+                </h1>
+
+                <h5>Mantenimiento</h5>
+
+                <p>
+                    Correctivo y preventivo.
+                </p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h1>
+                    <i class="fas fa-network-wired"></i>
+                </h1>
+
+                <h5>Redes</h5>
+
+                <p>
+                    Cableado y configuración.
+                </p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h1>
+                    <i class="fas fa-video"></i>
+                </h1>
+
+                <h5>CCTV</h5>
+
+                <p>
+                    Sistemas de vigilancia.
+                </p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h1>
+                    <i class="fas fa-headset"></i>
+                </h1>
+
+                <h5>Soporte</h5>
+
+                <p>
+                    Asistencia especializada.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- FOOTER -->
+
+<footer id="contacto">
+
+    <div class="container text-center">
+
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+        class="footer-logo">
+
+        <h4>
+           La Sucursal Tecnológica
+        </h4>
+
+        <p>
+            Soluciones tecnológicas para hogares,
+            empresas y entidades públicas.
+        </p>
+
+        <p>
+            Cali - Valle del Cauca
+        </p>
+
+        <div class="mt-4">
+
+            <a href="#"
+            class="text-white mx-2">
+
+                <i class="fab fa-facebook fa-2x"></i>
+
+            </a>
+
+            <a href="#"
+            class="text-white mx-2">
+
+                <i class="fab fa-instagram fa-2x"></i>
+
+            </a>
+
+            <a href="https://wa.me/573168869259"
+class="text-white mx-2"
+target="_blank">
+
+    <i class="fab fa-whatsapp fa-2x"></i>
+
+
+
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+window.addEventListener("load", function(){
+
+    setTimeout(() => {
+
+        document.getElementById("splash-screen")
+        .style.display = "none";
+
+    }, 3500);
+
+});
+
+</script>
+
+</body>
+
+<div id="splash-screen">
+
+    <img src="{{ url_for('static', filename='img/logo.png') }}"
+    alt="Sucursal Tecnológica"
+    class="splash-logo">
+
+    <h2>LA SUCURSAL TECNOLÓGICA</h2>
+
+</div>
+
+</html>
