@@ -920,3 +920,102 @@ h2{
         visibility:hidden;
     }
 }
+
+/* =========================
+   BANNER CATEGORIA
+========================= */
+
+.banner-categoria{
+
+    padding:150px 0 90px;
+
+    text-align:center;
+
+    background:
+    radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#0ea5e9 0%,transparent 35%),
+    #020617;
+
+    color:white;
+}
+
+.banner-categoria h1{
+
+    font-size:4.5rem;
+
+    font-weight:800;
+}
+
+.banner-categoria p{
+
+    color:#cbd5e1;
+
+    font-size:1.2rem;
+}
+
+.marcas-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:60px;
+}
+
+.marca-btn{
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    background:white;
+
+    font-weight:600;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+.marca-btn:hover{
+
+    background:#2563eb;
+
+    color:white;
+}
+
+.titulo-categoria{
+
+    margin:70px 0 40px;
+}
+
+.titulo-categoria h2{
+
+    font-size:2.3rem;
+
+    font-weight:800;
+}
+
+.marca-titulo{
+
+    margin-top:70px;
+
+    margin-bottom:30px;
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+    border-left:6px solid #2563eb;
+
+    padding-left:20px;
+}

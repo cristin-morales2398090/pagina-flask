@@ -5,10 +5,16 @@
 
     <meta charset="UTF-8">
 
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
     <title>{{ categoria }}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet"
     href="{{ url_for('static', filename='css/style.css') }}">
@@ -17,45 +23,112 @@
 
 <body>
 
-<div class="container mt-5 pt-5">
+<!-- BANNER -->
 
-    <h1 class="text-center mb-5">
+<section class="banner-categoria">
 
-        {{ categoria }}
+    <div class="container">
 
-    </h1>
+        <h1>{{ categoria }}</h1>
+
+        <p>
+            Tecnología empresarial, educativa y gamer
+            con garantía y soporte especializado.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- BUSCADOR -->
+
+<div class="container mt-5">
+
+    <div class="buscador-categoria">
+
+        <input
+        type="text"
+        id="buscador"
+        class="form-control"
+        placeholder="🔍 Buscar portátil, marca o referencia...">
+
+    </div>
+
+</div>
+
+<!-- MARCAS -->
+
+<div class="container">
+
+    <div class="marcas-container">
+
+        <button class="marca-btn">Lenovo</button>
+        <button class="marca-btn">HP</button>
+        <button class="marca-btn">ASUS</button>
+        <button class="marca-btn">Dell</button>
+        <button class="marca-btn">Acer</button>
+        <button class="marca-btn">MSI</button>
+
+    </div>
+
+</div>
+
+<!-- LENOVO -->
+
+<div class="container">
+
+    <h2 class="marca-titulo">
+        Lenovo
+    </h2>
 
     <div class="row">
 
         {% for producto in productos %}
 
-        <div class="col-lg-4 col-md-6 mb-5">
+            {% if producto.marca == "Lenovo" %}
 
-            <div class="producto-premium">
+            <div class="col-lg-4 col-md-6 mb-5 producto-item">
 
-                <div class="imagen-producto">
+                <div class="producto-premium">
 
-                    <img
-                    src="{{ url_for('static', filename=producto.imagen) }}"
-                    alt="{{ producto.nombre }}">
+                    <div class="badge-producto">
+                        DESTACADO
+                    </div>
 
-                </div>
+                    <div class="imagen-producto">
 
-                <div class="contenido-producto">
+                        <img
+                        src="{{ url_for('static', filename=producto.imagen) }}"
+                        alt="{{ producto.nombre }}">
 
-                    <h3>
-                        {{ producto.nombre }}
-                    </h3>
+                    </div>
 
-                    <p>
-                        {{ producto.descripcion }}
-                    </p>
+                    <div class="contenido-producto">
 
-                    <div class="precio-box">
+                        <h3>{{ producto.nombre }}</h3>
 
-                        <span class="precio">
-                            {{ producto.precio }}
-                        </span>
+                        <p>{{ producto.descripcion }}</p>
+
+                        <div class="precio-box">
+
+                            <span class="precio">
+                                {{ producto.precio }}
+                            </span>
+
+                        </div>
+
+                        <div class="acciones">
+
+                            <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20{{ producto.nombre }}"
+                            target="_blank"
+                            class="btn-comprar">
+
+                                <i class="fab fa-whatsapp"></i>
+                                Cotizar
+
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -63,13 +136,303 @@
 
             </div>
 
-        </div>
+            {% endif %}
 
         {% endfor %}
 
     </div>
 
 </div>
+
+<!-- HP -->
+
+<div class="container">
+
+    <h2 class="marca-titulo">
+        HP
+    </h2>
+
+    <div class="row">
+
+        {% for producto in productos %}
+
+            {% if producto.marca == "HP" %}
+
+            <div class="col-lg-4 col-md-6 mb-5 producto-item">
+
+                <div class="producto-premium">
+
+                    <div class="badge-producto">
+
+    {% if producto.tipo == "Gamer" %}
+
+        GAMER
+
+    {% else %}
+
+        DESTACADO
+
+    {% endif %}
+
+</div>
+
+                    <div class="imagen-producto">
+
+                        <img
+                        src="{{ url_for('static', filename=producto.imagen) }}"
+                        alt="{{ producto.nombre }}">
+
+                    </div>
+
+                    <div class="contenido-producto">
+
+                        <h3>{{ producto.nombre }}</h3>
+
+                        <p>{{ producto.descripcion }}</p>
+
+                        <div class="precio-box">
+
+                            <span class="precio">
+                                {{ producto.precio }}
+                            </span>
+
+                        </div>
+
+                        <div class="acciones">
+
+                            <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20{{ producto.nombre }}"
+                            target="_blank"
+                            class="btn-comprar">
+
+                                <i class="fab fa-whatsapp"></i>
+                                Cotizar
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- ASUS -->
+
+<div class="container">
+
+    <h2 class="marca-titulo">
+        ASUS
+    </h2>
+
+    <div class="row">
+
+        {% for producto in productos %}
+
+            {% if producto.marca == "ASUS" %}
+
+            <div class="col-lg-4 col-md-6 mb-5 producto-item">
+
+                <div class="producto-premium">
+
+                   <div class="badge-producto">
+
+    {% if producto.tipo == "Gamer" %}
+
+        GAMER
+
+    {% else %}
+
+        DESTACADO
+
+    {% endif %}
+
+</div>
+
+                    <div class="imagen-producto">
+
+                        <img
+                        src="{{ url_for('static', filename=producto.imagen) }}"
+                        alt="{{ producto.nombre }}">
+
+                    </div>
+
+                    <div class="contenido-producto">
+
+                        <h3>{{ producto.nombre }}</h3>
+
+                        <p>{{ producto.descripcion }}</p>
+
+                        <div class="precio-box">
+
+                            <span class="precio">
+                                {{ producto.precio }}
+                            </span>
+
+                        </div>
+
+                        <div class="acciones">
+
+                            <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20{{ producto.nombre }}"
+                            target="_blank"
+                            class="btn-comprar">
+
+                                <i class="fab fa-whatsapp"></i>
+                                Cotizar
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+<!-- MSI -->
+
+<div class="container">
+
+    <h2 class="marca-titulo">
+        MSI
+    </h2>
+
+    <div class="row">
+
+        {% for producto in productos %}
+
+            {% if producto.marca == "MSI" %}
+
+            <div class="col-lg-4 col-md-6 mb-5 producto-item">
+
+                <div class="producto-premium">
+
+                    <div class="badge-producto">
+                        GAMER
+                    </div>
+
+                    <div class="imagen-producto">
+
+                        <img
+                        src="{{ url_for('static', filename=producto.imagen) }}"
+                        alt="{{ producto.nombre }}">
+
+                    </div>
+
+                    <div class="contenido-producto">
+
+                        <h3>{{ producto.nombre }}</h3>
+
+                        <p>{{ producto.descripcion }}</p>
+
+                        <div class="precio-box">
+
+                            <span class="precio">
+                                {{ producto.precio }}
+                            </span>
+
+                        </div>
+
+                        <div class="acciones">
+
+                            <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20{{ producto.nombre }}"
+                            target="_blank"
+                            class="btn-comprar">
+
+                                <i class="fab fa-whatsapp"></i>
+                                Cotizar
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+<!-- VOLVER -->
+
+<div class="container text-center mb-5">
+
+    <a href="/"
+    class="btn btn-primary btn-lg">
+
+        <i class="fas fa-arrow-left"></i>
+
+        Volver al Inicio
+
+    </a>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<a href="https://wa.me/573168869259"
+class="whatsapp"
+target="_blank">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+<script>
+
+const buscador =
+document.getElementById("buscador");
+
+buscador.addEventListener("keyup", function(){
+
+    let texto =
+    this.value.toLowerCase();
+
+    let productos =
+    document.querySelectorAll(".producto-item");
+
+    productos.forEach(producto => {
+
+        let contenido =
+        producto.innerText.toLowerCase();
+
+        if(contenido.includes(texto)){
+
+            producto.style.display = "";
+
+        }else{
+
+            producto.style.display = "none";
+
+        }
+
+    });
+
+});
+
+</script>
 
 </body>
 
