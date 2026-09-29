@@ -1,0 +1,62 @@
+{% macro tarjeta(p) %}
+<article class="producto-premium tilt"
+         data-id="{{ p.id }}"
+         data-marca="{{ p.marca }}"
+         data-tipo="{{ p.tipo }}"
+         data-buscar="{{ (p.nombre ~ ' ' ~ p.marca ~ ' ' ~ p.tipo ~ ' ' ~ p.descripcion)|lower }}"
+         {% if p.specs %}data-ram="{{ p.specs.ram_gb }}" data-cpu="{{ p.specs.nivel_cpu }}" data-pulgadas="{{ p.specs.pulgadas }}"{% endif %}>
+
+  <div class="badge-producto {% if p.tipo == 'Gamer' %}gamer{% else %}destacado{% endif %}">
+    {% if p.tipo == 'Gamer' %}<i class="fas fa-gamepad me-1"></i>GAMER{% elif p.destacado %}<i class="fas fa-star me-1"></i>DESTACADO{% else %}{{ p.tipo|upper }}{% endif %}
+  </div>
+
+  <label class="compare-check" title="Agregar al comparador">
+    <input type="checkbox" data-comparar="{{ p.id }}">
+    <span><i class="fas fa-code-compare"></i></span>
+  </label>
+
+  <button class="imagen-producto" type="button" data-ver="{{ p.id }}" aria-label="Ver detalles de {{ p.nombre }}">
+    <img src="{{ url_for('static', filename=p.imagen) }}" alt="{{ p.nombre }}" loading="lazy"
+         onerror="this.onerror=null;this.src='{{ url_for('static', filename='img/logo.png') }}';this.classList.add('img-fallback');">
+    <span class="ver-rapido"><i class="fas fa-eye me-2"></i>Vista rápida</span>
+  </button>
+
+  <div class="contenido-producto">
+    <span class="categoria">{{ p.marca }} · {{ p.tipo }}</span>
+    <h3>{{ p.nombre }}</h3>
+
+    {% if p.specs %}
+    <ul class="spec-chips">
+      {% if p.specs.cpu %}<li><i class="fas fa-microchip"></i>{{ p.specs.cpu }}</li>{% endif %}
+      {% if p.specs.ram_corta %}<li><i class="fas fa-memory"></i>{{ p.specs.ram_corta }}</li>{% endif %}
+      {% if p.specs.disco_corto %}<li><i class="fas fa-hard-drive"></i>{{ p.specs.disco_corto }}</li>{% endif %}
+      {% if p.specs.pantalla_corta %}<li><i class="fas fa-display"></i>{{ p.specs.pantalla_corta }}</li>{% endif %}
+      {% if p.specs.grafica_corta %}<li class="chip-gpu"><i class="fas fa-bolt"></i>{{ p.specs.grafica_corta }}</li>{% endif %}
+    </ul>
+    {% elif p.funciones %}
+    <ul class="spec-chips">
+      {% for f in p.funciones %}<li><i class="fas fa-check"></i>{{ f }}</li>{% endfor %}
+    </ul>
+    {% else %}
+    <p>{{ p.descripcion }}</p>
+    {% endif %}
+
+    <div class="precio-box">
+      {% if p.precio %}
+        <span class="prod-precio">{{ p.precio }}</span>
+      {% else %}
+        <span class="precio-consultar"><i class="fas fa-tag me-1"></i>Precio a consultar</span>
+      {% endif %}
+    </div>
+
+    <div class="card-acciones">
+      <button class="btn-comprar" type="button" data-agregar="{{ p.id }}">
+        <i class="fas fa-plus"></i> Agregar a cotización
+      </button>
+      <a class="btn-icono btn-icono-wa" target="_blank" rel="noopener"
+         href="https://wa.me/{{ whatsapp }}?text={{ ('Hola, estoy interesado en ' ~ p.nombre ~ ' (' ~ p.descripcion ~ ')')|urlencode }}"
+         aria-label="Preguntar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</article>
+{% endmacro %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Página no encontrada — La Sucursal Tecnológica{% endblock %}
+{% block contenido %}
+<section class="s-404">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="container text-center position-relative">
+    <p class="num-404">404</p>
+    <h1>Esta página se desconectó</h1>
+    <p class="sub mx-auto">La dirección que buscas no existe o fue movida. Vuelve al inicio o revisa nuestras categorías.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+      <a href="/" class="btn-hero-primary magnetic"><i class="fas fa-house me-2"></i>Ir al inicio</a>
+      <a href="/categoria/portatiles" class="btn-hero-ghost magnetic"><i class="fas fa-laptop"></i> Ver portátiles</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

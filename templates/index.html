@@ -1,587 +1,334 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "base.html" %}
+{% from "_producto.html" import tarjeta %}
 
-<head>
+{% block body_class %}pagina-inicio{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>La Sucursal Tecnológica</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}">
-
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-
-    <div class="container">
-
-        <a class="navbar-brand d-flex align-items-center" href="#">
-
-            <img src="{{ url_for('static', filename='img/logo.png') }}"
-            class="logo">
-
-            <span class="ms-3">
-                La Sucursal Tecnológica
-            </span>
-
-        </a>
-
-        <button class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menu">
-
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-        <div class="collapse navbar-collapse"
-        id="menu">
-
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#categorias">
-                        Categorías
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#productos">
-                        Productos
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#servicios">
-                        Servicios
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">
-                        Contacto
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-</nav>
+{% block contenido %}
 
 <!-- HERO -->
-
-<section class="hero">
-
-    <div class="container">
-
-        <div class="row align-items-center">
-
-            <div class="col-lg-6">
-
-                <h1>
-                    CONECTANDO TU FUTURO
-                </h1>
-
-                <p>
-
-                    Venta de computadores, impresoras,
-                    redes empresariales, CCTV,
-                    accesorios tecnológicos y soporte profesional.
-
-                </p>
-
-                <div class="mt-4">
-
-                    <a href="#productos"
-                    class="btn btn-primary btn-lg me-3">
-
-                        Servicios
-
-                    </a>
-
-                    <a href="https://wa.me/573168869259?text=Hola,%20estoy%20interesado%20en%20los%20productos%20y%20servicios%20de%20La%20Sucursal%20Tecnológica"
-class="btn btn-outline-primary btn-lg"
-target="_blank">
-
-    Contactar
-
-</a>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-6 text-center">
-
-                <img src="{{ url_for('static', filename='img/logo.png') }}"
-                class="hero-logo">
-
-            </div>
-
+<section class="hero" id="inicio">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          CALI — VALLE DEL CAUCA
         </div>
-
-    </div>
-
-</section>
-
-<!-- CATEGORIAS -->
-
-<section id="categorias" class="container py-5">
-
-    <div class="titulo-seccion">
-
-        <span>EXPLORA</span>
-
-        <h2>Nuestras Líneas Tecnológicas</h2>
-
-        <p>
-            Encuentra equipos, accesorios y soluciones tecnológicas
-            para hogares, empresas y entidades públicas.
+        <h1>
+          <span class="line1">CONECTANDO</span>
+          <span class="line2">TU FUTURO</span>
+        </h1>
+        <p class="hero-typing">
+          Especialistas en <span class="typing" id="typing" data-palabras='["portátiles corporativos","equipos gamer","impresoras de tinta","redes empresariales","cámaras CCTV","soporte técnico"]'></span><span class="typing-cursor">|</span>
+        </p>
+        <p class="hero-desc">
+          Tecnología real para hogares, empresas y entidades públicas.
+          Arma tu cotización en segundos y recíbela por WhatsApp.
         </p>
 
+        <!-- BUSCADOR GLOBAL -->
+        <div class="hero-buscador" id="heroBuscador">
+          <div class="buscador-inner">
+            <i class="fas fa-search"></i>
+            <input type="search" id="buscadorGlobal" placeholder="¿Qué estás buscando? Ej: Ryzen 7, Epson, 16GB..." autocomplete="off" aria-label="Buscar productos">
+            <kbd class="kbd-atajo">/</kbd>
+          </div>
+          <div class="buscador-resultados" id="resultadosGlobal" role="listbox"></div>
+        </div>
+
+        <div class="hero-btns">
+          <a href="#catalogo" class="btn-hero-primary magnetic">
+            Ver productos <i class="fas fa-arrow-right ms-2"></i>
+          </a>
+          <a href="#asesor" class="btn-hero-ghost magnetic">
+            <i class="fas fa-wand-magic-sparkles"></i> ¿Qué portátil necesito?
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center d-none d-lg-block">
+        <div class="hero-visual" id="heroVisual">
+          <div class="hero-img-wrap">
+            <div class="hero-img-ring"></div>
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="La Sucursal Tecnológica">
+          </div>
+          <div class="hero-stat stat-1">
+            <div class="num">+<span data-contar="500">0</span></div>
+            <div class="lbl">CLIENTES ACTIVOS</div>
+          </div>
+          <div class="hero-stat stat-2">
+            <div class="num"><span data-contar="10">0</span>+</div>
+            <div class="lbl">AÑOS DE EXPERIENCIA</div>
+          </div>
+          <div class="hero-stat stat-3">
+            <div class="num"><span data-contar="{{ productos|length }}">0</span></div>
+            <div class="lbl">PRODUCTOS EN CATÁLOGO</div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="row g-4">
-
-        <!-- PORTATILES -->
-
-       <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/portatiles" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/portatiles.jpg') }}"
-                alt="Portátiles">
-
-            </div>
-
-            <h4>Portátiles</h4>
-
-            <p>
-                HP, Lenovo, ASUS, Dell y más.
-            </p>
-
-            <span>Ver catálogo →</span>
-
-        </div>
-
-    </a>
-
-</div>
-
-        <!-- IMPRESORAS -->
-
-       <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/impresoras" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/impresoras.jpg') }}"
-                alt="Impresoras">
-
-            </div>
-
-            <h4>Impresoras</h4>
-
-            <p>
-                Epson, HP, Brother y Canon.
-            </p>
-
-            <span>Ver catálogo →</span>
-
-        </div>
-
-    </a>
-
-</div>
-
-        <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/redes" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/redes.jpg') }}"
-                alt="Redes">
-
-            </div>
-
-            <h4>Redes</h4>
-
-            <p>
-                Routers, switches y cableado estructurado.
-            </p>
-
-            <span>Ver catálogo →</span>
-
-        </div>
-
-    </a>
-
-</div>
-
-        <!-- ACCESORIOS -->
-
-        <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/accesorios" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/accesorios.jpg') }}"
-                alt="Accesorios">
-
-            </div>
-
-            <h4>Accesorios</h4>
-
-            <p>
-                Mouse, teclados, audífonos y periféricos.
-            </p>
-
-            <span>
-                Ver catálogo →
-            </span>
-
-        </div>
-
-    </a>
-
-</div>
-
-        <!-- COMPUTADORES -->
-
-        <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/computadores" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/computadores.jpg') }}"
-                alt="Computadores">
-
-            </div>
-
-            <h4>Computadores</h4>
-
-            <p>
-                Equipos empresariales y estaciones de trabajo.
-            </p>
-
-            <span>
-                Ver catálogo →
-            </span>
-
-        </div>
-
-    </a>
-
-</div>
-
-        <!-- SEGURIDAD -->
-
-        <div class="col-lg-4 col-md-6">
-
-    <a href="/categoria/seguridad" class="categoria-link">
-
-        <div class="categoria-card">
-
-            <div class="categoria-imagen">
-
-                <img src="{{ url_for('static', filename='img/categorias/seguridad.jpg') }}"
-                alt="Seguridad">
-
-            </div>
-
-            <h4>Seguridad</h4>
-
-            <p>
-                Cámaras CCTV, DVR y sistemas de vigilancia.
-            </p>
-
-            <span>
-                Ver catálogo →
-            </span>
-
-        </div>
-
-    </a>
-
-</div>
+  </div>
+  <a href="#marcas" class="scroll-indicator" aria-label="Bajar">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </a>
 </section>
-<!-- PRODUCTOS -->
 
-<section id="productos" class="container py-5">
+<!-- MARCAS EN MOVIMIENTO -->
+<section class="marquee" id="marcas" aria-label="Marcas que manejamos">
+  <div class="marquee-track">
+    {% for vuelta in range(2) %}
+      {% for m in ['HP','Lenovo','ASUS','MSI','Epson','Brother','NVIDIA','AMD','Intel'] %}
+      <span class="marquee-item">{{ m }}</span><span class="marquee-sep">✦</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
 
-    <div class="titulo-seccion">
-
-    <span>DESTACADOS</span>
-
-    <h2>Productos Más Vendidos</h2>
-
-    <p>
-        Los equipos tecnológicos más solicitados por nuestros clientes.
-    </p>
-
-</div>
-
-    <div class="row">
-
-        {% for producto in productos %}
-
-        <div class="col-lg-4 col-md-6 mb-5">
-
-            <div class="producto-premium">
-
-                <div class="badge-producto">
-                    Nuevo
-                </div>
-
-                <div class="imagen-producto">
-
-                    <img src="{{ url_for('static', filename=producto.imagen) }}">
-
-                </div>
-
-                <div class="contenido-producto">
-
-                    <span class="categoria">
-                        Tecnología
-                    </span>
-
-                    <h3>
-                        {{ producto.nombre }}
-                    </h3>
-
-                    <p>
-                        {{ producto.descripcion }}
-                    </p>
-
-                    <div class="precio-box">
-
-                        <span class="precio-antiguo">
-                            $3.000.000
-                        </span>
-
-                        <span class="precio">
-                            {{ producto.precio }}
-                        </span>
-
-                    </div>
-
-                    <div class="acciones">
-
-                        <button class="btn-comprar">
-                            Cotizar
-                        </button>
-
-                        <button class="btn-favorito">
-
-                            <i class="fas fa-heart"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        {% endfor %}
-
+<!-- CATEGORÍAS -->
+<section id="categorias" class="s-categorias">
+  <div class="container">
+    <div class="row align-items-end reveal">
+      <div class="col-lg-6">
+        <span class="section-label">CATÁLOGO TECNOLÓGICO</span>
+        <h2>Soluciones para<br>cada necesidad</h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="sub">Equipos corporativos, impresión, redes, accesorios y seguridad para hogares, empresas y entidades públicas.</p>
+      </div>
     </div>
 
+    <div class="cat-grid reveal">
+      {% for clave in ['portatiles','impresoras'] %}
+      {% set cat = categorias[clave] %}
+      <a href="/categoria/{{ clave }}" class="cat-card cat-card-big tilt">
+        <img src="{{ url_for('static', filename=cat.imagen) }}" alt="{{ cat.titulo }}">
+        <div class="cat-overlay">
+          {% if loop.first %}<span class="cat-tag">MÁS VENDIDO</span>{% endif %}
+          <h3>{{ cat.titulo }}</h3>
+          <p>{{ cat.descripcion }}</p>
+          <span class="cat-count"><i class="fas {{ cat.icono }} me-2"></i>{{ conteo[clave] }} productos disponibles</span>
+        </div>
+        <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="cat-grid cat-grid-sm reveal">
+      {% for clave in ['computadores','accesorios'] %}
+      {% set cat = categorias[clave] %}
+      <a href="/categoria/{{ clave }}" class="cat-card cat-card-3 tilt">
+        <img src="{{ url_for('static', filename=cat.imagen) }}" alt="{{ cat.titulo }}">
+        <div class="cat-overlay">
+          <span class="cat-tag cat-tag-pronto">PRÓXIMAMENTE</span>
+          <h4>{{ cat.titulo }}</h4>
+          <p>{{ cat.descripcion }}</p>
+        </div>
+        <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO INTERACTIVO -->
+<section id="catalogo" class="s-productos">
+  <div class="container">
+    <div class="text-center mb-4 reveal">
+      <span class="section-label">EXPLORA</span>
+      <h2>Encuentra tu próximo equipo</h2>
+      <p class="sub mx-auto mt-2">Filtra, compara hasta 3 equipos y arma tu cotización sin salir de la página.</p>
+    </div>
+
+    <div class="tabs-lst reveal" role="tablist" id="tabsCatalogo">
+      <button class="tab-lst active" role="tab" data-tab="destacados"><i class="fas fa-star"></i> Destacados</button>
+      <button class="tab-lst" role="tab" data-tab="Gamer"><i class="fas fa-gamepad"></i> Gamer</button>
+      <button class="tab-lst" role="tab" data-tab="Corporativo"><i class="fas fa-briefcase"></i> Oficina y estudio</button>
+      <button class="tab-lst" role="tab" data-tab="impresoras"><i class="fas fa-print"></i> Impresoras</button>
+      <span class="tab-indicador" aria-hidden="true"></span>
+    </div>
+
+    <div class="grid-productos" id="gridInicio">
+      {% for p in productos %}
+      <div class="producto-item" data-cat="{{ p.categoria }}" data-tipo="{{ p.tipo }}" data-destacado="{{ 'si' if p.destacado else 'no' }}">
+        {{ tarjeta(p) }}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="/categoria/portatiles" class="btn-hero-ghost magnetic" id="verTodoCatalogo">
+        Ver todo el catálogo <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ASESOR / QUIZ -->
+<section id="asesor" class="s-asesor">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 reveal">
+        <span class="section-label">ASESOR VIRTUAL</span>
+        <h2>¿No sabes cuál elegir?<br><span class="texto-gradiente">Te ayudamos.</span></h2>
+        <p class="sub">Responde 3 preguntas rápidas y te mostramos los equipos que mejor se ajustan a lo que necesitas.</p>
+        <ul class="asesor-beneficios">
+          <li><i class="fas fa-check"></i> Recomendaciones de nuestro catálogo real</li>
+          <li><i class="fas fa-check"></i> Compara y agrega a tu cotización al instante</li>
+          <li><i class="fas fa-check"></i> Un asesor humano te confirma por WhatsApp</li>
+        </ul>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="quiz" id="quiz">
+          <div class="quiz-progreso"><span id="quizBarra"></span></div>
+          <div class="quiz-paso activo" data-paso="1">
+            <p class="quiz-num">Pregunta 1 de 3</p>
+            <h3>¿Para qué lo vas a usar?</h3>
+            <div class="quiz-opciones">
+              <button type="button" data-respuesta="uso" data-valor="estudio"><i class="fas fa-graduation-cap"></i><span>Estudio y tareas</span></button>
+              <button type="button" data-respuesta="uso" data-valor="oficina"><i class="fas fa-briefcase"></i><span>Trabajo de oficina</span></button>
+              <button type="button" data-respuesta="uso" data-valor="gaming"><i class="fas fa-gamepad"></i><span>Juegos y diseño</span></button>
+              <button type="button" data-respuesta="uso" data-valor="imprimir"><i class="fas fa-print"></i><span>Necesito imprimir</span></button>
+            </div>
+          </div>
+          <div class="quiz-paso" data-paso="2">
+            <p class="quiz-num">Pregunta 2 de 3</p>
+            <h3 data-titulo-portatil>¿Qué es lo más importante para ti?</h3>
+            <h3 data-titulo-impresora hidden>¿Qué necesitas que haga?</h3>
+            <div class="quiz-opciones" data-opciones-portatil>
+              <button type="button" data-respuesta="prioridad" data-valor="precio"><i class="fas fa-piggy-bank"></i><span>Que sea económico</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="rendimiento"><i class="fas fa-rocket"></i><span>Máximo rendimiento</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="ram"><i class="fas fa-layer-group"></i><span>Muchas cosas a la vez (RAM)</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="portatil"><i class="fas fa-feather"></i><span>Que sea liviano (14")</span></button>
+            </div>
+            <div class="quiz-opciones" data-opciones-impresora hidden>
+              <button type="button" data-respuesta="prioridad" data-valor="WiFi"><i class="fas fa-wifi"></i><span>Imprimir desde el celular</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="Escanea"><i class="fas fa-copy"></i><span>Copiar y escanear</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="Dúplex"><i class="fas fa-file-lines"></i><span>Imprimir por ambas caras</span></button>
+              <button type="button" data-respuesta="prioridad" data-valor="Monocromática"><i class="fas fa-circle-half-stroke"></i><span>Solo blanco y negro</span></button>
+            </div>
+          </div>
+          <div class="quiz-paso" data-paso="3">
+            <p class="quiz-num">Pregunta 3 de 3</p>
+            <h3>¿Tienes una marca favorita?</h3>
+            <div class="quiz-opciones quiz-opciones-marcas" id="quizMarcas"></div>
+          </div>
+          <div class="quiz-paso" data-paso="resultado">
+            <p class="quiz-num"><i class="fas fa-wand-magic-sparkles me-2"></i>Tus recomendaciones</p>
+            <h3>Estos equipos son para ti</h3>
+            <div class="quiz-resultados" id="quizResultados"></div>
+            <div class="d-flex gap-2 flex-wrap mt-4">
+              <button type="button" class="btn-hero-ghost py-2 px-4" id="quizReiniciar"><i class="fas fa-rotate-left"></i> Empezar de nuevo</button>
+              <a class="btn-comprar px-4" id="quizWhatsapp" target="_blank" rel="noopener" href="#"><i class="fab fa-whatsapp"></i> Hablar con un asesor</a>
+            </div>
+          </div>
+          <button type="button" class="quiz-atras" id="quizAtras" hidden><i class="fas fa-arrow-left me-2"></i>Atrás</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SERVICIOS -->
-
-<section id="servicios"
-class="servicios">
-
-    <div class="container">
-
-        <h2 class="text-center text-white">
-            Nuestros Servicios
-        </h2>
-
-        <div class="row text-center">
-
-            <div class="col-md-3">
-
-                <h1>
-                    <i class="fas fa-tools"></i>
-                </h1>
-
-                <h5>Mantenimiento</h5>
-
-                <p>
-                    Correctivo y preventivo.
-                </p>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h1>
-                    <i class="fas fa-network-wired"></i>
-                </h1>
-
-                <h5>Redes</h5>
-
-                <p>
-                    Cableado y configuración.
-                </p>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h1>
-                    <i class="fas fa-video"></i>
-                </h1>
-
-                <h5>CCTV</h5>
-
-                <p>
-                    Sistemas de vigilancia.
-                </p>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <h1>
-                    <i class="fas fa-headset"></i>
-                </h1>
-
-                <h5>Soporte</h5>
-
-                <p>
-                    Asistencia especializada.
-                </p>
-
-            </div>
-
-        </div>
-
+<section id="servicios" class="s-servicios">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">LO QUE HACEMOS</span>
+      <h2>Nuestros Servicios</h2>
+      <p class="sub mt-2">Toca un servicio para ver qué incluye y solicitarlo.</p>
     </div>
-
+    <div class="svc-cards reveal">
+      {% set servicios = [
+        ('fa-tools','Mantenimiento','Mantenimiento correctivo y preventivo para equipos de cómputo y periféricos.',['Limpieza interna y cambio de pasta térmica','Formateo e instalación de programas','Diagnóstico de fallas','Cambio de repuestos']),
+        ('fa-network-wired','Redes','Diseño, instalación y configuración de redes LAN, WAN y WiFi empresarial.',['Cableado estructurado','Configuración de routers y switches','WiFi empresarial','Mantenimiento de redes']),
+        ('fa-video','CCTV','Instalación de sistemas de videovigilancia IP y analógica para hogares y empresas.',['Cámaras IP y analógicas','Grabadores DVR / NVR','Monitoreo desde el celular','Mantenimiento de cámaras']),
+        ('fa-headset','Soporte Técnico','Asistencia especializada presencial y remota para empresas y entidades públicas.',['Soporte remoto','Visitas técnicas','Contratos para empresas','Atención a entidades públicas'])
+      ] %}
+      {% for icono, titulo, texto, incluye in servicios %}
+      <div class="svc-card" role="button" tabindex="0" aria-expanded="false">
+        <div class="svc-icon"><i class="fas {{ icono }}"></i></div>
+        <h5>{{ titulo }}</h5>
+        <p>{{ texto }}</p>
+        <div class="svc-detalle">
+          <ul>
+            {% for item in incluye %}<li><i class="fas fa-check"></i>{{ item }}</li>{% endfor %}
+          </ul>
+          <a class="svc-solicitar" target="_blank" rel="noopener" href="https://wa.me/{{ whatsapp }}?text={{ ('Hola, quiero información sobre el servicio de ' ~ titulo)|urlencode }}"><i class="fab fa-whatsapp me-2"></i>Solicitar {{ titulo|lower }}</a>
+        </div>
+        <span class="svc-mas"><i class="fas fa-plus"></i></span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
-<!-- FOOTER -->
 
-<footer id="contacto">
-
-    <div class="container text-center">
-
-        <img src="{{ url_for('static', filename='img/logo.png') }}"
-        class="footer-logo">
-
-        <h4>
-           La Sucursal Tecnológica
-        </h4>
-
-        <p>
-            Soluciones tecnológicas para hogares,
-            empresas y entidades públicas.
-        </p>
-
-        <p>
-            Cali - Valle del Cauca
-        </p>
-
-        <div class="mt-4">
-
-            <a href="#"
-            class="text-white mx-2">
-
-                <i class="fab fa-facebook fa-2x"></i>
-
-            </a>
-
-            <a href="#"
-            class="text-white mx-2">
-
-                <i class="fab fa-instagram fa-2x"></i>
-
-            </a>
-
-            <a href="https://wa.me/573168869259"
-class="text-white mx-2"
-target="_blank">
-
-    <i class="fab fa-whatsapp fa-2x"></i>
-
-
-
-            </a>
-
-        </div>
-
+<!-- CÓMO COMPRAR -->
+<section class="s-proceso">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">ASÍ DE FÁCIL</span>
+      <h2>Cómo comprar</h2>
     </div>
+    <div class="proceso reveal" id="proceso">
+      <div class="proceso-linea"><span></span></div>
+      <div class="proceso-paso"><div class="proceso-num">1</div><h5>Elige</h5><p>Explora el catálogo o usa el asesor virtual.</p></div>
+      <div class="proceso-paso"><div class="proceso-num">2</div><h5>Agrega</h5><p>Suma los productos a tu cotización.</p></div>
+      <div class="proceso-paso"><div class="proceso-num">3</div><h5>Envía</h5><p>Mándanos la lista por WhatsApp en un clic.</p></div>
+      <div class="proceso-paso"><div class="proceso-num">4</div><h5>Recibe</h5><p>Te confirmamos precio, disponibilidad y entrega.</p></div>
+    </div>
+  </div>
+</section>
 
-</footer>
+<!-- PREGUNTAS FRECUENTES -->
+<section class="s-faq">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="section-label">DUDAS</span>
+        <h2>Preguntas frecuentes</h2>
+        <p class="sub">¿No encuentras tu respuesta? Escríbenos y te respondemos en minutos.</p>
+      </div>
+      <div class="col-lg-8 reveal">
+        <div class="faq" id="faq">
+          {% set preguntas = [
+            ('¿Cómo cotizo varios productos a la vez?','Toca "Agregar a cotización" en cada producto. Luego abre el ícono de cotización en el menú y envía toda la lista por WhatsApp en un solo mensaje.'),
+            ('¿Los equipos tienen garantía?','Sí. Todos nuestros equipos cuentan con garantía y soporte especializado. Un asesor te confirma el tiempo de garantía de cada producto.'),
+            ('¿Atienden empresas y entidades públicas?','Sí. Atendemos hogares, empresas y entidades públicas, con soporte presencial y remoto.'),
+            ('¿Dónde están ubicados?','Estamos en Cali, Valle del Cauca. Escríbenos por WhatsApp para coordinar entrega o visita técnica.'),
+            ('¿Por qué algunos productos dicen "Precio a consultar"?','Los precios de tecnología cambian con frecuencia. Te damos el precio actualizado y la disponibilidad al momento de cotizar.')
+          ] %}
+          {% for pregunta, respuesta in preguntas %}
+          <div class="faq-item">
+            <button class="faq-pregunta" type="button" aria-expanded="false">
+              <span>{{ pregunta }}</span><i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-respuesta"><p>{{ respuesta }}</p></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- CTA -->
+<section class="s-cta reveal">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <h2>¿Listo para conectar<br>tu empresa al futuro?</h2>
+        <p>Escríbenos por WhatsApp y recibe asesoría personalizada. Respondemos en minutos.</p>
+      </div>
+      <div class="col-lg-5 text-lg-end">
+        <a href="https://wa.me/{{ whatsapp }}?text={{ 'Hola, estoy interesado en los productos y servicios de La Sucursal Tecnológica'|urlencode }}" class="btn-cta-wa magnetic" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i>
+          Hablar con un asesor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script>
-
-window.addEventListener("load", function(){
-
-    setTimeout(() => {
-
-        document.getElementById("splash-screen")
-        .style.display = "none";
-
-    }, 3500);
-
-});
-
-</script>
-
-</body>
-
-<div id="splash-screen">
-
-    <img src="{{ url_for('static', filename='img/logo.png') }}"
-    alt="Sucursal Tecnológica"
-    class="splash-logo">
-
-    <h2>LA SUCURSAL TECNOLÓGICA</h2>
-
-</div>
-
-</html>
+{% endblock %}

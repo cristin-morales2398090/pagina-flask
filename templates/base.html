@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}La Sucursal Tecnológica{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}Computadores, portátiles, impresoras, redes, CCTV y soporte técnico en Cali, Valle del Cauca.{% endblock %}">
+  <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+<!-- BARRA DE PROGRESO DE SCROLL -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="navbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo La Sucursal Tecnológica">
+      <span class="ms-3">La Sucursal Tecnológica</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+        <li class="nav-item dropdown-lst">
+          <a class="nav-link" href="/#categorias">Categorías <i class="fas fa-chevron-down ms-1 small"></i></a>
+          <div class="dropdown-lst-menu">
+            {% for clave, cat in categorias_menu.items() %}
+            <a href="/categoria/{{ clave }}" class="dropdown-lst-item">
+              <i class="fas {{ cat.icono }}"></i>
+              <span>{{ cat.titulo }}</span>
+              {% if not cat.activa %}<small>Pronto</small>{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/#catalogo">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#asesor">Asesor</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#servicios">Servicios</a></li>
+        <li class="nav-item ms-lg-2">
+          <button class="nav-cart" type="button" data-abrir-cotizacion aria-label="Ver mi cotización">
+            <i class="fas fa-file-invoice"></i>
+            <span class="nav-cart-count" data-contador-cotizacion>0</span>
+          </button>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn-nav-cta nav-link" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp me-1"></i> Cotizar ahora
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block contenido %}{% endblock %}
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" class="footer-logo" alt="Logo">
+        <p class="footer-brand">La Sucursal Tecnológica</p>
+        <p class="footer-desc">Soluciones tecnológicas para hogares, empresas y entidades públicas en Cali y el Valle del Cauca.</p>
+        <div class="footer-social mt-4">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <p class="footer-heading">Categorías</p>
+        <ul class="footer-links">
+          {% for clave, cat in categorias_menu.items() %}
+          <li><a href="/categoria/{{ clave }}">{{ cat.titulo }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <p class="footer-heading">Servicios</p>
+        <ul class="footer-links">
+          <li><a href="/#servicios">Mantenimiento</a></li>
+          <li><a href="/#servicios">Redes</a></li>
+          <li><a href="/#servicios">CCTV</a></li>
+          <li><a href="/#servicios">Soporte Técnico</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <p class="footer-heading">Contacto</p>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt me-2" style="color:#38bdf8;"></i>Cali, Valle del Cauca</li>
+          <li><a href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2" style="color:#25D366;"></i>+57 316 886 9259</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+      <span>© {{ anio }} La Sucursal Tecnológica. Todos los derechos reservados.</span>
+      <span>Cali, Colombia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTONES FLOTANTES -->
+<button class="to-top" id="toTop" type="button" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+<a href="https://wa.me/{{ whatsapp }}" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- PANEL DE COTIZACIÓN -->
+<div class="drawer-fondo" data-cerrar-cotizacion></div>
+<aside class="drawer-cotizacion" id="drawerCotizacion" aria-label="Mi cotización" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <span class="section-label mb-2">MI COTIZACIÓN</span>
+      <h3>Productos elegidos</h3>
+    </div>
+    <button class="btn-icono" type="button" data-cerrar-cotizacion aria-label="Cerrar"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="listaCotizacion"></div>
+  <div class="drawer-foot">
+    <label class="drawer-label" for="notaCotizacion">¿Algo más que debamos saber?</label>
+    <textarea id="notaCotizacion" rows="2" placeholder="Ej: lo necesito para una empresa, factura electrónica, envío..."></textarea>
+    <button class="btn-comprar w-100 mt-3" type="button" id="enviarCotizacion">
+      <i class="fab fa-whatsapp"></i> Enviar cotización por WhatsApp
+    </button>
+    <button class="btn-link-lst mt-2" type="button" id="vaciarCotizacion">Vaciar lista</button>
+  </div>
+</aside>
+
+<!-- VISTA RÁPIDA -->
+<div class="modal-lst" id="modalProducto" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
+  <div class="modal-lst-fondo" data-cerrar-modal></div>
+  <div class="modal-lst-caja">
+    <button class="btn-icono modal-lst-cerrar" type="button" data-cerrar-modal aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <div id="modalContenido"></div>
+  </div>
+</div>
+
+<!-- COMPARADOR -->
+<div class="compare-bar" id="compareBar" aria-live="polite">
+  <div class="container d-flex align-items-center gap-3 flex-wrap">
+    <span class="compare-titulo"><i class="fas fa-code-compare me-2"></i>Comparar</span>
+    <div class="compare-items" id="compareItems"></div>
+    <div class="ms-auto d-flex gap-2">
+      <button class="btn-link-lst" type="button" id="compareLimpiar">Limpiar</button>
+      <button class="btn-comprar px-4" type="button" id="compareVer"><i class="fas fa-table-columns"></i> Ver comparación</button>
+    </div>
+  </div>
+</div>
+
+<!-- AVISOS -->
+<div class="toast-lst" id="toast" role="status" aria-live="polite"></div>
+
+<!-- DATOS PARA JAVASCRIPT -->
+<script id="datos-productos" type="application/json">{{ catalogo_js|tojson }}</script>
+<script>window.LST = { whatsapp: "{{ whatsapp }}", static: "{{ url_for('static', filename='') }}" };</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
